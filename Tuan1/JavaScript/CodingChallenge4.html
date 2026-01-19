@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator (Challenge #4)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+            background-color: #e9ecef;
+        }
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 400px;
+            text-align: center;
+        }
+        h2 { color: #333; margin-bottom: 20px; }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        input[type="number"]:focus {
+            border-color: #2196F3; /* Blue for this app */
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        button:hover { background-color: #1976D2; }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: none;
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            border: 1px solid #bbdefb;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>💰 Tip Calculator</h2>
+
+    <div class="input-group">
+        <label>Enter Bill Value ($):</label>
+        <input type="number" id="billInput" placeholder="e.g. 275" value="275">
+    </div>
+
+    <button onclick="calculateTip()">Calculate</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    function calculateTip() {
+        // 1. Get the bill value
+        const bill = Number(document.getElementById('billInput').value);
+
+        // 2. LOGIC: The Ternary Operator (The core of the challenge)
+        // Condition: Is bill between 50 and 300?
+        // If True (?): Tip is 15% (0.15)
+        // If False (:): Tip is 20% (0.2)
+        const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+
+        const total = bill + tip;
+
+        // 3. Create the Output String
+        const message = `The bill is ${bill}, the tip is ${tip.toFixed(2)}, and the total value is ${total.toFixed(2)}`;
+
+        // 4. Print to Console (as required by task 2)
+        console.log(message);
+
+        // 5. Update UI
+        const resultDiv = document.getElementById('result');
+        resultDiv.style.display = "block";
+        resultDiv.textContent = message;
+    }
+</script>
+
+</body>
+</html>
